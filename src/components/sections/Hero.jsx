@@ -1,0 +1,285 @@
+import { useRef, useEffect, useState, useCallback } from 'react'
+import { motion } from 'framer-motion'
+import { ArrowRight, ChevronDown } from 'lucide-react'
+import { HOME_HERO } from '../../data/content'
+import Button from '../common/Button'
+import GlassPanel from '../common/GlassPanel'
+
+/* ── Animated Canvas Background ── */
+function HeroCanvas() {
+  const canvasRef = useRef(null)
+  const animRef = useRef(null)
+  const nodesRef = useRef([])
+  const mouseRef = useRef({ x: 0, y: 0 })
+  const prefersReduced = useRef(
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+
+  const initNodes = useCallback((w, h) => {
+    const count = Math.min(Math.floor((w * h) / 12000), 80)
+    const nodes = []
+    for (let i = 0; i < count; i++) {
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 2.5 + 1,
+        side: i < count / 2 ? 'blue' : 'mint',
+      })
+    }
+    nodesRef.current = nodes
+  }, [])
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+
+    const resize = () => {
+      const w = canvas.parentElement.clientWidth
+      const h = canvas.parentElement.clientHeight
+      canvas.width = w * dpr
+      canvas.height = h * dpr
+      canvas.style.width = w + 'px'
+      canvas.style.height = h + 'px'
+      ctx.scale(dpr, dpr)
+      initNodes(w, h)
+    }
+
+    const onMouse = (e) => {
+      const rect = canvas.getBoundingClientRect()
+      mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
+    }
+
+    resize()
+    window.addEventListener('resize', resize)
+    canvas.addEventListener('mousemove', onMouse)
+
+    if (prefersReduced.current) {
+      /* Static fallback: draw once */
+      const w = canvas.parentElement.clientWidth
+      const h = canvas.parentElement.clientHeight
+      drawFrame(ctx, w, h, nodesRef.current, mouseRef.current, false)
+      return () => {
+        window.removeEventListener('resize', resize)
+        canvas.removeEventListener('mousemove', onMouse)
+      }
+    }
+
+    const animate = () => {
+      const w = canvas.parentElement.clientWidth
+      const h = canvas.parentElement.clientHeight
+      drawFrame(ctx, w, h, nodesRef.current, mouseRef.current, true)
+      animRef.current = requestAnimationFrame(animate)
+    }
+    animRef.current = requestAnimationFrame(animate)
+
+    return () => {
+      cancelAnimationFrame(animRef.current)
+      window.removeEventListener('resize', resize)
+      canvas.removeEventListener('mousemove', onMouse)
+    }
+  }, [initNodes])
+
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+}
+
+function drawFrame(ctx, w, h, nodes, mouse, animated) {
+  ctx.clearRect(0, 0, w, h)
+
+  const blueColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-blue').trim() || '#6E8DA6'
+  const mintColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-mint').trim() || '#BFE0B8'
+
+  /* Update & draw nodes */
+  for (let i = 0; i < nodes.length; i++) {
+    const n = nodes[i]
+    if (animated) {
+      n.x += n.vx
+      n.y += n.vy
+      if (n.x < 0 || n.x > w) n.vx *= -1
+      if (n.y < 0 || n.y > h) n.vy *= -1
+
+      /* Mouse repulsion */
+      const dx = n.x - mouse.x
+      const dy = n.y - mouse.y
+      const dist = Math.sqrt(dx * dx + dy * dy)
+      if (dist < 150 && dist > 0) {
+        const force = (150 - dist) / 150 * 0.5
+        n.x += (dx / dist) * force
+        n.y += (dy / dist) * force
+      }
+    }
+
+    const color = n.side === 'blue' ? blueColor : mintColor
+    /* Ring terminal node */
+    ctx.beginPath()
+    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2)
+    ctx.strokeStyle = color
+    ctx.globalAlpha = 0.6
+    ctx.lineWidth = 1
+    ctx.stroke()
+
+    /* Draw connections */
+    for (let j = i + 1; j < nodes.length; j++) {
+      const m = nodes[j]
+      const ddx = n.x - m.x
+      const ddy = n.y - m.y
+      const d = Math.sqrt(ddx * ddx + ddy * ddy)
+      if (d < 120) {
+        ctx.beginPath()
+        ctx.moveTo(n.x, n.y)
+        /* 90° bend circuit trace */
+        if (Math.abs(ddx) > Math.abs(ddy)) {
+          ctx.lineTo(m.x, n.y)
+          ctx.lineTo(m.x, m.y)
+        } else {
+          ctx.lineTo(n.x, m.y)
+          ctx.lineTo(m.x, m.y)
+        }
+        ctx.strokeStyle = n.side === 'blue' ? blueColor : mintColor
+        ctx.globalAlpha = (1 - d / 120) * 0.15
+        ctx.lineWidth = 0.5
+        ctx.stroke()
+      }
+    }
+  }
+  ctx.globalAlpha = 1
+}
+
+/* ── Live Stats Ticker ── */
+function LiveStats({ stats }) {
+  const [values, setValues] = useState(stats.map(s => s.value))
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setValues(prev => prev.map((v, i) => {
+        const base = stats[i].value
+        const jitter = stats[i].suffix === '%' ? (Math.random() - 0.5) * 0.02 : Math.floor((Math.random() - 0.5) * base * 0.05)
+        return stats[i].suffix === '%' ? Math.min(100, Math.max(99.9, base + jitter)) : Math.max(0, Math.floor(base + jitter))
+      }))
+    }, 2000)
+    return () => clearInterval(interval)
+  }, [stats])
+
+  return (
+    <GlassPanel className="inline-flex flex-wrap gap-6 md:gap-10 !py-4 !px-6">
+      <span className="flex items-center gap-2 text-xs text-[var(--accent-mint)] font-mono">
+        <span className="w-2 h-2 rounded-full bg-[var(--accent-mint)] animate-pulse" />
+        LIVE
+      </span>
+      {stats.map((stat, i) => (
+        <div key={stat.label} className="text-center">
+          <div className="text-[var(--text-primary)] font-display font-bold text-lg tabular-nums">
+            {stat.suffix === '%' ? values[i].toFixed(2) : values[i].toLocaleString()}{stat.suffix}
+          </div>
+          <div className="text-[var(--text-muted)] text-[10px] uppercase tracking-wider">{stat.label}</div>
+        </div>
+      ))}
+    </GlassPanel>
+  )
+}
+
+/* ── Main Hero ── */
+export default function Hero() {
+  return (
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden" id="hero">
+      {/* Canvas Background */}
+      <div className="absolute inset-0">
+        <HeroCanvas />
+        {/* Radial fade */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--base)] via-transparent to-[var(--base)] opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--base)] via-transparent to-[var(--base)] opacity-40" />
+      </div>
+
+      {/* Content */}
+      <div className="relative container-wide pt-32 pb-20">
+        <div className="max-w-4xl">
+          {/* Headline */}
+          <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] mb-8">
+            {HOME_HERO.headline.map((line, i) => (
+              <motion.span
+                key={i}
+                className="block"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 + i * 0.15, ease: [0.25, 0.4, 0.25, 1] }}
+              >
+                {line.split(' ').map((word, j) => {
+                  const isHighlight = HOME_HERO.highlightWords.some(hw =>
+                    hw.toLowerCase().includes(word.toLowerCase()) && word.length > 3
+                  )
+                  return (
+                    <span key={j}>
+                      {isHighlight ? (
+                        <span className="brain-gradient">{word}</span>
+                      ) : (
+                        <span className="text-[var(--text-primary)]">{word}</span>
+                      )}
+                      {' '}
+                    </span>
+                  )
+                })}
+              </motion.span>
+            ))}
+          </h1>
+
+          {/* Sub-copy */}
+          <motion.p
+            className="text-[var(--text-muted)] text-base md:text-lg max-w-2xl mb-10 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.8 }}
+          >
+            {HOME_HERO.subCopy}
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            className="flex flex-wrap gap-4 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1 }}
+          >
+            <Button href={HOME_HERO.ctaPrimary.href} variant="cta" iconRight={ArrowRight} magnetic>
+              {HOME_HERO.ctaPrimary.label}
+            </Button>
+            <Button href={HOME_HERO.ctaSecondary.href} variant="secondary">
+              {HOME_HERO.ctaSecondary.label}
+            </Button>
+          </motion.div>
+
+          {/* Live Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.2 }}
+          >
+            <LiveStats stats={HOME_HERO.liveStats} />
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+      >
+        <span className="text-[var(--text-muted)] text-xs uppercase tracking-widest">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+        >
+          <ChevronDown size={20} className="text-[var(--accent-blue)]" />
+        </motion.div>
+        <svg width="3" height="24" viewBox="0 0 3 24">
+          <line x1="1.5" y1="0" x2="1.5" y2="20" stroke="var(--accent-blue)" strokeWidth="1" strokeLinecap="round" />
+          <circle cx="1.5" cy="22" r="1.5" fill="none" stroke="var(--accent-mint)" strokeWidth="1" />
+        </svg>
+      </motion.div>
+    </section>
+  )
+}

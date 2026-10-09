@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* ─── Tailwind v4 Theme Extension ─── */
+@theme {
+  --font-display: 'Sora', 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --color-base: var(--base);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-primary: var(--text-primary);
+  --color-muted: var(--text-muted);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-blue-light: var(--accent-blue-light);
+  --color-accent-mint: var(--accent-mint);
+  --color-accent-mint-deep: var(--accent-mint-deep);
+  --color-silver-start: var(--silver-start);
+  --color-silver-mid: var(--silver-mid);
+  --color-silver-end: var(--silver-end);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+}
+
+/* ─── Dark Theme (default) ─── */
+:root,
+[data-theme="dark"] {
+  --base: #070B14;
+  --surface: #0F1623;
+  --surface-raised: #182335;
+  --text-primary: #F4F7FA;
+  --text-muted: #718196;
+  --text-secondary: #C7CDD4;
+  --accent-blue: #6E8DA6;
+  --accent-blue-light: #9DB6C9;
+  --accent-mint: #BFE0B8;
+  --accent-mint-deep: #8CC48A;
+  --silver-start: #F4F7FA;
+  --silver-mid: #C7CDD4;
+  --silver-end: #8E98A6;
+  --border-subtle: rgba(110, 141, 166, 0.15);
+  --border-strong: rgba(110, 141, 166, 0.3);
+  --glass-bg: rgba(15, 22, 35, 0.6);
+  --glass-border: rgba(110, 141, 166, 0.2);
+  --glass-shadow: rgba(0, 0, 0, 0.4);
+  --glow-blue: rgba(110, 141, 166, 0.4);
+  --glow-mint: rgba(140, 196, 138, 0.4);
+  --grain-opacity: 0.04;
+  --logo-field: #343E55;
+
+  color-scheme: dark;
+}
+
+/* ─── Light Theme ─── */
+[data-theme="light"] {
+  --base: #F4F7FA;
+  --surface: #EAF0F5;
+  --surface-raised: #FFFFFF;
+  --text-primary: #070B14;
+  --text-muted: #5A6A7D;
+  --text-secondary: #3A4A5C;
+  --accent-blue: #3F6482;
+  --accent-blue-light: #6E8DA6;
+  --accent-mint: #3F7D4E;
+  --accent-mint-deep: #2D6B3A;
+  --silver-start: #343E55;
+  --silver-mid: #5A6A7D;
+  --silver-end: #718196;
+  --border-subtle: rgba(63, 100, 130, 0.12);
+  --border-strong: rgba(63, 100, 130, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(63, 100, 130, 0.15);
+  --glass-shadow: rgba(0, 0, 0, 0.08);
+  --glow-blue: rgba(63, 100, 130, 0.2);
+  --glow-mint: rgba(63, 125, 78, 0.2);
+  --grain-opacity: 0.02;
+  --logo-field: #EAF0F5;
+
+  color-scheme: light;
+}
+
+/* ─── Base Styles ─── */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--base);
+  color: var(--text-secondary);
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+::selection {
+  background: var(--accent-blue);
+  color: var(--text-primary);
+}
+
+/* ─── Typography ─── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Brain Gradient (signature) ─── */
+.brain-gradient {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-mint) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brain-gradient-bg {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-mint) 100%);
+}
+
+.brain-gradient-border {
+  border-image: linear-gradient(135deg, var(--accent-blue), var(--accent-mint)) 1;
+}
+
+/* ─── Outlined Text (signature wordmark style) ─── */
+.text-outlined {
+  -webkit-text-stroke: 1.5px var(--text-muted);
+  -webkit-text-fill-color: transparent;
+  transition: -webkit-text-stroke-color 0.4s ease;
+}
+
+.text-outlined-thick {
+  -webkit-text-stroke: 2px var(--text-muted);
+  -webkit-text-fill-color: transparent;
+}
+
+.text-outlined:hover,
+.text-outlined-hover-fill:hover {
+  -webkit-text-stroke-color: var(--accent-blue);
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-mint) 100%);
+  -webkit-background-clip: text;
+}
+
+/* ─── Glass Utility ─── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px var(--glass-shadow),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-subtle {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+/* ─── Metal Utility (brushed-metal gradient border + emboss) ─── */
+.metal {
+  position: relative;
+  background: var(--surface-raised);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.metal::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    var(--silver-start) 0%,
+    var(--silver-mid) 40%,
+    var(--silver-end) 100%
+  );
+  z-index: -1;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  padding: 1px;
+}
+
+.metal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ─── Circuit Trace Lines ─── */
+.circuit-line {
+  stroke: var(--accent-blue);
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.circuit-node {
+  fill: none;
+  stroke: var(--accent-mint);
+  stroke-width: 1.5;
+}
+
+.circuit-node-filled {
+  fill: var(--accent-mint);
+  stroke: var(--accent-mint);
+  stroke-width: 1.5;
+}
+
+/* ─── Grain Overlay ─── */
+.grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Scroll Progress ─── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-mint));
+  transform-origin: left;
+  z-index: 10000;
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent-blue), var(--accent-mint));
+  border-radius: 3px;
+}
+
+/* ─── Focus Styles ─── */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Container ─── */
+.container-wide {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-wide {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-wide {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* ─── Theme Transition ─── */
+[data-theme] * {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Disable transitions for motion-sensitive elements */
+[data-theme] canvas,
+[data-theme] video,
+[data-theme] img,
+[data-theme] svg path {
+  transition: none;
+}

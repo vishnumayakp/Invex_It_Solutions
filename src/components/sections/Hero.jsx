@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { HOME_HERO } from '../../data/content'
+import { useTheme } from '../../hooks/useTheme.jsx'
 import Button from '../common/Button'
 import GlassPanel from '../common/GlassPanel'
 
@@ -55,7 +56,7 @@ function HeroCanvas() {
 
     resize()
     window.addEventListener('resize', resize)
-    canvas.addEventListener('mousemove', onMouse)
+    window.addEventListener('mousemove', onMouse)
 
     if (prefersReduced.current) {
       /* Static fallback: draw once */
@@ -64,7 +65,7 @@ function HeroCanvas() {
       drawFrame(ctx, w, h, nodesRef.current, mouseRef.current, false)
       return () => {
         window.removeEventListener('resize', resize)
-        canvas.removeEventListener('mousemove', onMouse)
+        window.removeEventListener('mousemove', onMouse)
       }
     }
 
@@ -79,7 +80,7 @@ function HeroCanvas() {
     return () => {
       cancelAnimationFrame(animRef.current)
       window.removeEventListener('resize', resize)
-      canvas.removeEventListener('mousemove', onMouse)
+      window.removeEventListener('mousemove', onMouse)
     }
   }, [initNodes])
 
@@ -139,8 +140,8 @@ function drawFrame(ctx, w, h, nodes, mouse, animated) {
           ctx.lineTo(m.x, m.y)
         }
         ctx.strokeStyle = n.side === 'blue' ? blueColor : mintColor
-        ctx.globalAlpha = (1 - d / 120) * 0.15
-        ctx.lineWidth = 0.5
+        ctx.globalAlpha = (1 - d / 120) * 0.35
+        ctx.lineWidth = 1
         ctx.stroke()
       }
     }
@@ -183,6 +184,9 @@ function LiveStats({ stats }) {
 
 /* ── Main Hero ── */
 export default function Hero() {
+  const { theme } = useTheme()
+  const subCopyColor = theme === 'dark' ? '#E6ECF2' : '#3A4A60'
+
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden" id="hero">
       {/* Canvas Background */}
@@ -227,10 +231,11 @@ export default function Hero() {
 
           {/* Sub-copy */}
           <motion.p
-            className="text-[var(--text-muted)] text-base md:text-lg max-w-2xl mb-10 leading-relaxed"
+            style={{ color: subCopyColor }}
+            className="text-base sm:text-lg md:text-lg max-w-2xl mb-10 leading-relaxed font-normal transition-colors duration-300"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
           >
             {HOME_HERO.subCopy}
           </motion.p>
@@ -251,13 +256,13 @@ export default function Hero() {
           </motion.div>
 
           {/* Live Stats */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.2 }}
           >
             <LiveStats stats={HOME_HERO.liveStats} />
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
 
@@ -268,7 +273,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
       >
-        <span className="text-[var(--text-muted)] text-xs uppercase tracking-widest">Scroll</span>
+        {/* <span className="text-[var(--text-muted)] text-xs uppercase tracking-widest">Scroll</span> */}
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}

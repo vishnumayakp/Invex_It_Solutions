@@ -20,6 +20,7 @@
   --color-silver-end: var(--silver-end);
   --color-border-subtle: var(--border-subtle);
   --color-border-strong: var(--border-strong);
+  --color-hero-subcopy: var(--hero-subcopy);
 }
 
 /* ─── Dark Theme (default) ─── */
@@ -31,6 +32,7 @@
   --text-primary: #F4F7FA;
   --text-muted: #718196;
   --text-secondary: #C7CDD4;
+  --hero-subcopy: #E6ECF2;
   --accent-blue: #6E8DA6;
   --accent-blue-light: #9DB6C9;
   --accent-mint: #BFE0B8;
@@ -59,6 +61,7 @@
   --text-primary: #070B14;
   --text-muted: #5A6A7D;
   --text-secondary: #3A4A5C;
+  --hero-subcopy: #3A4A60;
   --accent-blue: #3F6482;
   --accent-blue-light: #6E8DA6;
   --accent-mint: #3F7D4E;

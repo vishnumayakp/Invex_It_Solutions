@@ -5,11 +5,10 @@ import { Link, useRouter } from '@/router/Router';
 import { useTheme } from '@/hooks/useTheme.jsx';
 import { NAV_LINKS } from '@/data/content';
 import logoLight from '@/assets/images/invex-logo3.png';
-import logoDark from '@/assets/images/invex-logo3.png';
 
 export function Logo({ onClick }) {
   const { theme } = useTheme();
-  const currentLogo = theme === 'light' ? logoLight : logoDark;
+  const currentLogo = logoLight;
 
   return (
     <Link
@@ -19,11 +18,11 @@ export function Logo({ onClick }) {
       data-cursor="HOME"
       aria-label="Invex IT Solutions Home"
     >
-      <div className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl overflow-hidden border border-[var(--border-subtle)] bg-[var(--surface-raised)] shadow-md shrink-0 transition-all duration-300 group-hover:scale-105 group-hover:border-[var(--accent-blue)] group-hover:shadow-[0_0_20px_var(--glow-blue)] p-1">
+      <div className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl overflow-hidden border border-black/5 dark:border-white/20 bg-white shadow-md shrink-0 transition-all duration-300 group-hover:scale-105 group-hover:border-[var(--accent-blue)] group-hover:shadow-[0_0_20px_var(--glow-blue)] p-1">
         <img
           src={currentLogo}
           alt="Invex IT Solutions Logo"
-          className="w-full h-full object-contain transition-opacity duration-300"
+          className="w-full h-full object-contain rounded-xl transition-opacity duration-300"
           loading="eager"
           decoding="async"
         />

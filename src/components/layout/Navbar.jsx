@@ -7,7 +7,6 @@ import { NAV_LINKS } from '@/data/content';
 import logoLight from '@/assets/images/invex-logo3.png';
 
 export function Logo({ onClick }) {
-  const { theme } = useTheme();
   const currentLogo = logoLight;
 
   return (
@@ -59,7 +58,12 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-3 sm:pt-4 transition-all duration-500">
+      <motion.header
+        initial={{ opacity: 0, y: -24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-3 sm:pt-4 transition-all duration-500"
+      >
         <nav
           className={`flex items-center justify-between transition-all duration-500 ${scrolled
             ? 'glass rounded-full px-6 sm:px-8 py-3 sm:py-3.5 shadow-[0_8px_40px_rgba(0,0,0,0.3)] max-w-5xl w-full'
@@ -143,7 +147,7 @@ export default function Navbar() {
             </button>
           </div>
         </nav>
-      </header>
+      </motion.header>
 
       {/* Full-screen mobile overlay */}
       <div

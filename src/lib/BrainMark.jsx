@@ -6,7 +6,7 @@ import { useId } from 'react'
  * Right hemisphere: Mint (var(--accent-mint)) — growth/innovation
  * Includes staggered 4s node pulse loop, hover trace redraw, and soft glow shadow.
  */
-export default function BrainMark({ size = 52, className = '', animated = false }) {
+export default function BrainMark({ size = 52, className = '', _animated = false }) {
   const filterId = useId()
 
   // Node coordinate definitions for staggered pulse loop

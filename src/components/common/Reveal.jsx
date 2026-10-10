@@ -3,7 +3,8 @@ import { motion, useInView } from 'framer-motion'
 
 /**
  * Reveal — Wraps children with a scroll-triggered entrance animation.
- * @param {'fade'|'slideUp'|'slideLeft'|'slideRight'|'scale'} variant
+ * Default variant is now 'blurUp' (opacity + y + blur), matching the reference design.
+ * @param {'fade'|'slideUp'|'blurUp'|'slideLeft'|'slideRight'|'scale'} variant
  * @param {number} delay — stagger delay in seconds
  */
 const animations = {
@@ -14,6 +15,10 @@ const animations = {
   slideUp: {
     hidden: { opacity: 0, y: 60 },
     visible: { opacity: 1, y: 0 },
+  },
+  blurUp: {
+    hidden: { opacity: 0, y: 32, filter: 'blur(8px)' },
+    visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
   },
   slideLeft: {
     hidden: { opacity: 0, x: -60 },
@@ -31,9 +36,9 @@ const animations = {
 
 export default function Reveal({
   children,
-  variant = 'slideUp',
+  variant = 'blurUp',
   delay = 0,
-  duration = 0.7,
+  duration = 0.9,
   className = '',
   once = true,
   threshold = 0.2,
@@ -48,11 +53,11 @@ export default function Reveal({
       ref={ref}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
-      variants={animations[variant] || animations.slideUp}
+      variants={animations[variant] || animations.blurUp}
       transition={{
         duration,
         delay,
-        ease: [0.25, 0.4, 0.25, 1],
+        ease: [0.22, 1, 0.36, 1],
       }}
       className={className}
     >

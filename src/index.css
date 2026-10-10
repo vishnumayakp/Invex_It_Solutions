@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 /* ─── Tailwind v4 Theme Extension ─── */
-@theme {
+/* @theme {
   --font-display: 'Sora', 'Montserrat', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 
@@ -10,7 +10,38 @@
   --color-surface: var(--surface);
   --color-surface-raised: var(--surface-raised);
   --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
   --color-muted: var(--text-muted);
+  --color-subcopy: var(--hero-subcopy);
+  --color-text-primary: var(--text-primary);  
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-blue-light: var(--accent-blue-light);
+  --color-accent-mint: var(--accent-mint);
+  --color-accent-mint-deep: var(--accent-mint-deep);
+  --color-silver-start: var(--silver-start);
+  --color-silver-mid: var(--silver-mid);
+  --color-silver-end: var(--silver-end);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-hero-subcopy: var(--hero-subcopy);
+} */
+
+@theme inline {
+  --font-display: 'Sora', 'Montserrat', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --color-page: var(--base);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-muted: var(--text-muted);
+  --color-subcopy: var(--hero-subcopy);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
   --color-accent-blue: var(--accent-blue);
   --color-accent-blue-light: var(--accent-blue-light);
   --color-accent-mint: var(--accent-mint);
@@ -30,9 +61,13 @@
   --surface: #0F1623;
   --surface-raised: #182335;
   --text-primary: #F4F7FA;
-  --text-muted: #718196;
-  --text-secondary: #C7CDD4;
+  --text-secondary: #E6ECF2;
+  --text-muted: #9DB0C6;
   --hero-subcopy: #E6ECF2;
+  --primary: var(--text-primary);
+  --secondary: var(--text-secondary);
+  --muted: var(--text-muted);
+  --subcopy: var(--hero-subcopy);
   --accent-blue: #6E8DA6;
   --accent-blue-light: #9DB6C9;
   --accent-mint: #BFE0B8;
@@ -59,9 +94,13 @@
   --surface: #EAF0F5;
   --surface-raised: #FFFFFF;
   --text-primary: #070B14;
+  --text-secondary: #3A4A60;
   --text-muted: #5A6A7D;
-  --text-secondary: #3A4A5C;
   --hero-subcopy: #3A4A60;
+  --primary: var(--text-primary);
+  --secondary: var(--text-secondary);
+  --muted: var(--text-muted);
+  --subcopy: var(--hero-subcopy);
   --accent-blue: #3F6482;
   --accent-blue-light: #6E8DA6;
   --accent-mint: #3F7D4E;
@@ -134,6 +173,27 @@ h6 {
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
+
+/* ─── Direct Theme Text Color Utilities ─── */
+/* .text-primary,
+.text-text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary,
+.text-text-secondary,
+.text-subcopy {
+  color: var(--text-secondary);
+}
+
+.text-muted,
+.text-text-muted {
+  color: var(--text-muted);
+}
+
+.text-hero-subcopy {
+  color: var(--hero-subcopy);
+} */
 
 /* ─── Brain Gradient (signature) ─── */
 .brain-gradient {
@@ -447,4 +507,178 @@ html.cursor-enabled * {
   width: 24px;
   height: 24px;
   margin: -12px 0 0 -12px;
+}
+
+/* ─── Spotlight Card (pointer-tracking highlight) ─── */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%),
+      var(--glow-blue),
+      transparent 40%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card.spotlight-active::after {
+  opacity: 1;
+}
+
+/* Hide spotlight on touch devices */
+@media (hover: none) {
+  .spotlight-card::after {
+    display: none;
+  }
+}
+
+/* ─── Navbar Entrance ─── */
+@keyframes navbarEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.navbar-entrance {
+  animation: navbarEntrance 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+/* ─── Glow Bar ─── */
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.glow-bar {
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-mint));
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* ─── Section overlap top glow line ─── */
+.section-glow-top::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, var(--accent-blue) 35%, var(--accent-mint) 65%, transparent 95%);
+  opacity: 0.3;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ─── Radial glow at section top ─── */
+.section-radial-glow::after {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(ellipse at center, var(--glow-blue), transparent 70%);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── CTA Glow Pulse Once ─── */
+@keyframes pulseGlowOnce {
+  0% {
+    box-shadow: 0 0 0 0 var(--glow-blue);
+  }
+
+  50% {
+    box-shadow: 0 0 32px 10px var(--glow-blue);
+  }
+
+  100% {
+    box-shadow: 0 8px 24px -4px var(--glow-blue);
+  }
+}
+
+.pulse-glow-once {
+  animation: pulseGlowOnce 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.1s 1;
+}
+
+/* ─── Infinite Marquee ─── */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.group\/marquee:hover .animate-marquee,
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Funnel Beam Pulse ─── */
+@keyframes beamTravel {
+  0% {
+    stroke-dashoffset: 160;
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: -160;
+    opacity: 0.3;
+  }
+}
+
+.animate-beam {
+  animation: beamTravel 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ─── Twinkle Star ─── */
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle 3.2s ease-in-out infinite;
 }

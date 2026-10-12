@@ -2,8 +2,8 @@ import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
 import Hero from '../components/sections/Hero'
 import CircuitDivider from '../components/common/CircuitDivider'
+import ClientMarquee from '../components/common/ClientMarquee'
 import {
-  ClientMarquee,
   ValueProposition,
   ServicesOverview,
   KeyMetrics,
@@ -20,7 +20,7 @@ export default function Home() {
         <Hero />
 
         {/* Section 2.1: Client Marquee directly under Hero */}
-        <ClientMarquee />
+        {/* <ClientMarquee /> */}
 
         {/* Transition: CircuitDivider drawing in between Marquee and Bento */}
         <CircuitDivider className="container-wide" />
@@ -28,7 +28,7 @@ export default function Home() {
         {/* Section 2.2: Why Partner With Invex IT (Bento Grid) */}
         <ValueProposition />
 
-        {/* Section 2.3: Services & Products Overview (Pinned Tabbed Showcase) */}
+        {/* Section 2.3: Services & Products Overview ( Pinned Tabbed Showcase) */}
         <ServicesOverview />
 
         {/* Transition */}

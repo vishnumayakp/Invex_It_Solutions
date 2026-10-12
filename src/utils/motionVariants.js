@@ -10,7 +10,90 @@ export const TRANSITION_DEFAULTS = {
   ease: TRANSITION_EASE,
 }
 
-/* ── Standard Reveal Variants ── */
+/* ── Directional Flowing Reveal Variants ── */
+export const getDirectionalVariants = (from = 'bottom', { isMobile = false, rotate = false } = {}) => {
+  const xDistance = isMobile ? 32 : 90
+  const yDistance = 40
+
+  switch (from) {
+    case 'left':
+      return {
+        hidden: {
+          opacity: 0,
+          x: -xDistance,
+          filter: 'blur(10px)',
+          ...(rotate ? { rotateY: -4 } : {}),
+        },
+        visible: {
+          opacity: 1,
+          x: 0,
+          filter: 'blur(0px)',
+          ...(rotate ? { rotateY: 0 } : {}),
+        },
+      }
+    case 'right':
+      return {
+        hidden: {
+          opacity: 0,
+          x: xDistance,
+          filter: 'blur(10px)',
+          ...(rotate ? { rotateY: 4 } : {}),
+        },
+        visible: {
+          opacity: 1,
+          x: 0,
+          filter: 'blur(0px)',
+          ...(rotate ? { rotateY: 0 } : {}),
+        },
+      }
+    case 'top':
+      return {
+        hidden: {
+          opacity: 0,
+          y: -yDistance,
+          filter: 'blur(8px)',
+        },
+        visible: {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+        },
+      }
+    case 'bottom':
+      return {
+        hidden: {
+          opacity: 0,
+          y: yDistance,
+          filter: 'blur(8px)',
+        },
+        visible: {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+        },
+      }
+    case 'center':
+      return {
+        hidden: {
+          opacity: 0,
+          scale: 0.94,
+          filter: 'blur(10px)',
+        },
+        visible: {
+          opacity: 1,
+          scale: 1,
+          filter: 'blur(0px)',
+        },
+      }
+    default:
+      return {
+        hidden: { opacity: 0, y: yDistance, filter: 'blur(8px)' },
+        visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+      }
+  }
+}
+
+/* ── Standard Reveal Variants (backwards compatible) ── */
 export const revealVariants = {
   blurUp: {
     hidden: { opacity: 0, y: 32, filter: 'blur(8px)' },

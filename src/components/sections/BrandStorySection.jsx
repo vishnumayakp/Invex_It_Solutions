@@ -271,20 +271,18 @@ function ChapterItem({ chapter, isEven, reduced }) {
       {/* Desktop (center): left-1/2 -translate-x-1/2 | Mobile: left-6 -translate-x-1/2 */}
       <div className="absolute top-8 left-6 lg:left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
         <div
-          className={`relative w-6 h-6 rounded-full flex items-center justify-center transition-all duration-500 ${
-            isActive
-              ? 'bg-[var(--accent-mint)] shadow-[0_0_16px_var(--glow-mint)]'
-              : 'bg-[var(--surface-raised)] border border-[var(--border-subtle)]'
-          }`}
+          className={`relative w-6 h-6 rounded-full flex items-center justify-center transition-all duration-500 ${isActive
+            ? 'bg-[var(--accent-mint)] shadow-[0_0_16px_var(--glow-mint)]'
+            : 'bg-[var(--surface-raised)] border border-[var(--border-subtle)]'
+            }`}
         >
           {/* Pulse ring when active & not reduced motion */}
           {!reduced && isActive && (
             <span className="absolute -inset-1 rounded-full border border-[var(--accent-mint)]/70 animate-ping" />
           )}
           <span
-            className={`w-2 h-2 rounded-full ${
-              isActive ? 'bg-[var(--base)]' : 'bg-[var(--text-muted)]'
-            }`}
+            className={`w-2 h-2 rounded-full ${isActive ? 'bg-[var(--base)]' : 'bg-[var(--text-muted)]'
+              }`}
           />
         </div>
       </div>
@@ -293,11 +291,10 @@ function ChapterItem({ chapter, isEven, reduced }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* On desktop: Even items go to right (col 8-12), Odd items go to left (col 1-5) */}
         <div
-          className={`pl-14 sm:pl-16 lg:pl-0 ${
-            isEven
-              ? 'lg:col-start-8 lg:col-span-5 lg:ml-auto w-full'
-              : 'lg:col-start-1 lg:col-span-5 lg:mr-auto w-full'
-          }`}
+          className={`pl-14 sm:pl-16 lg:pl-0 ${isEven
+            ? 'lg:col-start-8 lg:col-span-5 lg:ml-auto w-full'
+            : 'lg:col-start-1 lg:col-span-5 lg:mr-auto w-full'
+            }`}
         >
           <Reveal from={isEven ? 'right' : 'left'} delay={0.15} rotate>
             <SpotlightCard

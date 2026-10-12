@@ -141,7 +141,7 @@ export default function ServicesStickyNav() {
   }
 
   return (
-    <div className="sticky top-14 sm:top-16 z-30 w-full flex justify-center px-4 py-3 pointer-events-none">
+    <div className="sticky top-20 sm:top-24 z-30 w-full flex justify-center px-4 py-3 pointer-events-none">
       <nav
         aria-label="Services Navigation"
         className="pointer-events-auto inline-flex items-center gap-1 sm:gap-1.5 p-1.5 rounded-full backdrop-blur-xl overflow-x-auto max-w-full no-scrollbar transition-colors duration-300"

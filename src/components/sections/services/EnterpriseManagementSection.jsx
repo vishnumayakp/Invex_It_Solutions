@@ -277,6 +277,9 @@ import { motion, useInView } from 'framer-motion'
 import { Ticket, Users, Clock, ShieldCheck, Fingerprint, Activity } from 'lucide-react'
 import { ENTERPRISE_MANAGEMENT } from '../../../data/services'
 import useReducedMotion from '../../../hooks/useReducedMotion'
+import payrollImg from '../../../assets/images/hr.png'
+import queueImg from '../../../assets/images/queue.png'
+
 
 /* helper: translucent version of a theme colour */
 const tint = (cssVar, pct) =>
@@ -295,27 +298,26 @@ function VisualFrame({ accent, floatY, duration, children }) {
   const reduced = useReducedMotion()
   return (
     <div
-      className="relative w-full aspect-[4/3] rounded-[24px] overflow-hidden border p-4 sm:p-6 flex items-center justify-center select-none transition-colors duration-300"
-      aria-hidden="true"
+      className="relative w-full aspect-[4/3] rounded-[24px] overflow-hidden border select-none transition-colors duration-300"
       style={{
         backgroundColor: tint('--base', 55),
         borderColor: tint(accent, 35),
         boxShadow: `0 16px 50px rgba(0,0,0,0.25), 0 0 40px ${tint(accent, 12)}`,
       }}
     >
-      <div
-        className="absolute inset-0 blur-2xl pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at center, ${tint(accent, 18)}, transparent 70%)`,
-        }}
-      />
       <motion.div
         animate={reduced ? {} : { y: floatY }}
         transition={reduced ? {} : { duration, repeat: Infinity, ease: 'easeInOut' }}
-        className="relative w-full h-full flex items-center justify-center"
+        className="relative w-full h-full"
       >
         {children}
       </motion.div>
+
+      {/* subtle accent tint over the image, matches the theme */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: `linear-gradient(to top, ${tint(accent, 14)}, transparent 50%)` }}
+      />
     </div>
   )
 }
@@ -323,104 +325,28 @@ function VisualFrame({ accent, floatY, duration, children }) {
 function QueueManagementVisual() {
   return (
     <VisualFrame accent="--accent-mint" floatY={[-4, 6, -4]} duration={5.8}>
-      <svg viewBox="0 0 520 380" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="queue-screen-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={surface(18)} />
-            <stop offset="100%" stopColor={surface(6)} />
-          </linearGradient>
-        </defs>
-        <polygon points="260,60 470,185 260,310 50,185" fill={BASE} stroke={MINT} strokeWidth="1.2" strokeOpacity="0.7" />
-        <g transform="translate(140, 200)">
-          <polygon points="0,-40 30,-22 0,-5 -30,-22" fill={surface(14)} stroke={MINT} strokeWidth="1" />
-          <polygon points="-30,-22 0,-5 0,55 -30,37" fill={surface(5)} stroke={MINT} strokeWidth="0.8" />
-          <polygon points="0,-5 30,-22 30,37 0,55" fill={surface(9)} stroke={MINT} strokeWidth="0.8" />
-          <polygon points="-18,-35 18,-45 18,-15 -18,-5" fill={BASE} stroke={BLUE} strokeWidth="1.2" />
-          <text x="0" y="-18" fill={BLUE} fontSize="7" fontFamily="monospace" textAnchor="middle" fontWeight="bold">TOUCH KIOSK</text>
-          <text x="0" y="-8" fill={MINT} fontSize="6.5" fontFamily="monospace" textAnchor="middle">GET TICKET</text>
-        </g>
-        <g transform="translate(320, 115)">
-          <rect x="-95" y="-45" width="190" height="90" rx="12" fill="url(#queue-screen-grad)" stroke={MINT} strokeWidth="1.4" />
-          <text x="-80" y="-25" fill={MUTED} fontSize="7.5" fontFamily="monospace">HALL COUNTER DISPLAY</text>
-          <line x1="-80" y1="-18" x2="80" y2="-18" stroke={MINT} strokeWidth="0.8" opacity="0.4" />
-          <text x="-80" y="2" fill={TXT} fontSize="13" fontFamily="monospace" fontWeight="bold">TICKET A-104</text>
-          <rect x="25" y="-10" width="55" height="18" rx="4" fill={MINT} fillOpacity="0.15" stroke={MINT} strokeWidth="0.8" />
-          <text x="52" y="3" fill={MINT} fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">COUNTER 01</text>
-          <text x="-80" y="24" fill={TXT} fontSize="13" fontFamily="monospace" fontWeight="bold">TICKET B-082</text>
-          <rect x="25" y="12" width="55" height="18" rx="4" fill={BLUE} fillOpacity="0.15" stroke={BLUE} strokeWidth="0.8" />
-          <text x="52" y="25" fill={BLUE} fontSize="9" fontFamily="monospace" textAnchor="middle" fontWeight="bold">COUNTER 03</text>
-        </g>
-        <g transform="translate(370, 245)">
-          <rect x="-65" y="-35" width="130" height="70" rx="12" fill={surface(7)} stroke={BLUE} strokeWidth="1.2" />
-          <circle cx="-48" cy="-18" r="4" fill={BLUE} />
-          <text x="-38" y="-15" fill={TXT} fontSize="7.5" fontFamily="monospace" fontWeight="bold">Mobile Ticket Sync</text>
-          <text x="-48" y="5" fill={MUTED} fontSize="7" fontFamily="sans-serif">Your turn in approx 4 mins</text>
-          <rect x="-48" y="14" width="96" height="10" rx="3" fill={MINT} fillOpacity="0.2" />
-          <text x="0" y="22" fill={MINT} fontSize="6.5" fontFamily="monospace" textAnchor="middle">EST. WAIT: 3m 42s</text>
-        </g>
-        <path d="M 170,175 Q 240,140 280,160" fill="none" stroke={MINT} strokeWidth="1.2" strokeDasharray="3 3" />
-        <path d="M 330,165 Q 350,200 370,215" fill="none" stroke={BLUE} strokeWidth="1.2" strokeDasharray="3 3" />
-      </svg>
+      <img
+        src={queueImg}
+        alt="Queue management system with kiosk and counter display"
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
     </VisualFrame>
   )
 }
 
 function BiometricPayrollVisual() {
-  const reduced = useReducedMotion()
   return (
     <VisualFrame accent="--accent-blue" floatY={[-5, 5, -5]} duration={6.2}>
-      <svg viewBox="0 0 520 380" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="bio-scan-line" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor={MINT} stopOpacity="0" />
-            <stop offset="50%" stopColor={MINT} stopOpacity="0.9" />
-            <stop offset="100%" stopColor={MINT} stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <polygon points="260,50 480,180 260,310 40,180" fill={BASE} stroke={BLUE} strokeWidth="1.2" strokeOpacity="0.75" />
-        <g transform="translate(150, 185)">
-          <polygon points="0,-45 35,-25 0,-5 -35,-25" fill={surface(14)} stroke={BLUE} strokeWidth="1" />
-          <polygon points="-35,-25 0,-5 0,65 -35,45" fill={surface(5)} stroke={BLUE} strokeWidth="0.8" />
-          <polygon points="0,-5 35,-25 35,45 0,65" fill={surface(9)} stroke={BLUE} strokeWidth="0.8" />
-          <g transform="translate(0, -35)">
-            {!reduced && (
-              <circle cx="0" cy="0" r="26" fill="none" stroke={MINT} strokeWidth="0.8" opacity="0.6">
-                <animate attributeName="r" values="18;34;18" dur="2.4s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0.8;0;0.8" dur="2.4s" repeatCount="indefinite" />
-              </circle>
-            )}
-            <rect x="-18" y="-22" width="36" height="44" rx="8" fill={BASE} stroke={BLUE} strokeWidth="1.5" />
-            <circle cx="0" cy="-2" r="12" fill={surface(12)} stroke={MINT} strokeWidth="1" />
-            <path d="M -6,-5 Q 0,-9 6,-5 M -8,0 Q 0,-5 8,0 M -7,5 Q 0,1 7,5" fill="none" stroke={MINT} strokeWidth="1" strokeLinecap="round" />
-            <circle cx="0" cy="14" r="2.5" fill={MINT} />
-          </g>
-          <text x="0" y="55" fill={BLUE} fontSize="7.5" fontFamily="monospace" textAnchor="middle" fontWeight="bold">BIOMETRIC TERMINAL</text>
-        </g>
-        <g transform="translate(350, 155)">
-          <rect x="-105" y="-65" width="210" height="130" rx="14" fill={surface(6)} stroke={BLUE} strokeWidth="1.4" />
-          <text x="-90" y="-42" fill={TXT} fontSize="8.5" fontFamily="monospace" fontWeight="bold">ENTERPRISE HR &amp; PAYROLL</text>
-          <line x1="-90" y1="-34" x2="90" y2="-34" stroke={BLUE} strokeWidth="0.8" opacity="0.3" />
-          <text x="-90" y="-18" fill={MUTED} fontSize="7.5" fontFamily="monospace">SYNC STATUS</text>
-          <text x="-90" y="-4" fill={MINT} fontSize="12" fontFamily="monospace" fontWeight="bold">100% CAPTURED</text>
-          <text x="15" y="-18" fill={MUTED} fontSize="7.5" fontFamily="monospace">OVERTIME ENGINE</text>
-          <text x="15" y="-4" fill={BLUE} fontSize="12" fontFamily="monospace" fontWeight="bold">AUTO CALCULATED</text>
-          <g transform="translate(-90, 12)">
-            <rect x="0" y="0" width="180" height="14" rx="3" fill={surface(14)} />
-            <text x="8" y="10" fill={TXT} fontSize="7" fontFamily="monospace">EMP #2841 • Shift A • 08:02 IN</text>
-            <circle cx="168" cy="7" r="3" fill={MINT} />
-            <rect x="0" y="18" width="180" height="14" rx="3" fill={surface(10)} />
-            <text x="8" y="28" fill={TXT} fontSize="7" fontFamily="monospace">EMP #1905 • Shift B • 08:14 IN</text>
-            <circle cx="168" cy="25" r="3" fill={MINT} />
-          </g>
-          <rect x="-90" y="48" width="180" height="10" rx="2" fill={BLUE} fillOpacity="0.15" />
-          <text x="0" y="55.5" fill={BLUE} fontSize="6.5" fontFamily="monospace" textAnchor="middle">DIRECT WAGE PROTECTION (WPS) EXPORT READY</text>
-        </g>
-        <path d="M 185,165 Q 240,210 270,185 Q 295,160 350,165" fill="none" stroke={MINT} strokeWidth="1.5" strokeDasharray="4 4" />
-      </svg>
+      <img
+        src={payrollImg}
+        alt="Biometric attendance terminal with HR and payroll dashboard"
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
     </VisualFrame>
   )
 }
-
 /* ── One text column (badge, title, subtitle, description, highlights) ── */
 function RowContent({ row, accent, icons }) {
   return (

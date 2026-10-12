@@ -1,6 +1,8 @@
 import { ThemeProvider } from "./hooks/useTheme.jsx";
 import { Router, useRouter } from "./router/Router";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
 import ComingSoon from "./pages/ComingSoon";
 import CustomCursor from "./components/common/CustomCursor";
 
@@ -11,9 +13,9 @@ function Routes() {
     case '/':
       return <Home />;
     case '/about':
-      return <ComingSoon title="About" />;
+      return <About />;
     case '/services':
-      return <ComingSoon title="Services" />;
+      return <Services />;
     case '/products':
       return <ComingSoon title="Products" />;
     case '/contact':

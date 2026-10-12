@@ -86,6 +86,22 @@
   --logo-field: #343E55;
 
   color-scheme: dark;
+
+  /* ── Services "Midnight Blueprint" tokens (dark) ── */
+  --bp-base: #070B1A;
+  --bp-surface: #0A1124;
+  --bp-surface-alt: #0D152A;
+  --bp-card: rgba(10, 17, 36, 0.90);
+  --bp-card-inner: #0E162B;
+  --bp-grid-stroke: rgba(20, 241, 217, 0.07);
+  --bp-grid-stroke-hero: rgba(20, 241, 217, 0.10);
+  --bp-text: #E8ECF8;
+  --bp-muted: #8A93B2;
+  --bp-border: rgba(20, 241, 217, 0.20);
+  --bp-border-hover: rgba(20, 241, 217, 0.65);
+  --bp-shadow: rgba(7, 11, 26, 0.80);
+  --bp-nav-bg: rgba(7, 11, 26, 0.88);
+  --bp-world-bg: #080E1E;
 }
 
 /* ─── Light Theme ─── */
@@ -119,6 +135,22 @@
   --logo-field: #EAF0F5;
 
   color-scheme: light;
+
+  /* ── Services "Midnight Blueprint" tokens (light) ── */
+  --bp-base: #F0F4FA;
+  --bp-surface: #E6EDF6;
+  --bp-surface-alt: #DCEAF5;
+  --bp-card: rgba(255, 255, 255, 0.90);
+  --bp-card-inner: #EEF4FC;
+  --bp-grid-stroke: rgba(14, 100, 160, 0.06);
+  --bp-grid-stroke-hero: rgba(14, 100, 160, 0.09);
+  --bp-text: #0C1A30;
+  --bp-muted: #566080;
+  --bp-border: rgba(14, 100, 160, 0.18);
+  --bp-border-hover: rgba(14, 100, 160, 0.55);
+  --bp-shadow: rgba(8, 20, 50, 0.12);
+  --bp-nav-bg: rgba(240, 244, 250, 0.92);
+  --bp-world-bg: #E2EAF4;
 }
 
 /* ─── Base Styles ─── */

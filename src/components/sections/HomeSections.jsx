@@ -1863,7 +1863,7 @@ export function ValueProposition() {
     <section
       ref={sectionRef}
       id="why-partner"
-      className="relative z-10 py-16 md:py-24 overflow-x-clip overflow-hidden"
+      className="relative z-10 pt-8 md:pt-12 lg:pt-16 pb-10 md:pb-14  overflow-x-clip overflow-hidden"
       aria-labelledby="why-partner-heading"
     >
       <div className="container-wide">
@@ -2240,7 +2240,7 @@ export function ServicesOverview() {
       <section
         ref={sectionRef}
         id="services-overview"
-        className={`relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-glow-top section-radial-glow ${reduced ? 'py-20 md:py-28' : 'lg:h-[300vh] py-20 lg:py-0'
+        className={`relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-glow-top section-radial-glow ${reduced ? 'pt-8 pb-10 md:pt-12 md:pb-14' : 'lg:h-[220vh] pt-12 pb-10 lg:py-0'
           }`}
         aria-labelledby="services-heading"
       >
@@ -2535,7 +2535,7 @@ export function KeyMetrics() {
     <section
       ref={sectionRef}
       id="key-metrics"
-      className="relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-glow-top section-radial-glow py-20 md:py-28 overflow-hidden overflow-x-clip"
+      className="relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-glow-top section-radial-glow pt-12 pb-10 md:pt-16 md:pb-14 overflow-hidden overflow-x-clip"
       aria-labelledby="metrics-heading"
     >
       <h2 id="metrics-heading" className="sr-only">
@@ -2655,7 +2655,7 @@ export function TestimonialSection() {
     <section
       ref={quoteRef}
       id="testimonial"
-      className="relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-glow-top section-radial-glow py-24 md:py-32 overflow-hidden overflow-x-clip"
+      className="relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-glow-top section-radial-glow pt-12 pb-10 md:pt-16 md:pb-14 overflow-hidden overflow-x-clip"
       aria-labelledby="testimonial-heading"
     >
       <h2 id="testimonial-heading" className="sr-only">
@@ -2751,7 +2751,7 @@ export function ClosingCTA() {
   return (
     <section
       id="closing-cta"
-      className="relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-glow-top section-radial-glow py-20 md:py-32 overflow-hidden overflow-x-clip"
+      className="relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-glow-top section-radial-glow pt-12 pb-10 md:pt-16 md:pb-14 overflow-hidden overflow-x-clip"
       aria-labelledby="cta-heading"
     >
       <div className="container-wide">

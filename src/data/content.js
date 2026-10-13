@@ -1,11 +1,8 @@
-/* ─── Navigation Links ─── */
-export const NAV_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Services', href: '/services' },
-  { label: 'Products', href: '/products' },
-  { label: 'Contact', href: '/contact' },
-]
+import { NAV_LINKS } from './navLinks'
+
+/* ─── Navigation Links (re-exported from navLinks.js) ─── */
+export { NAV_LINKS }
+
 
 /* ─── Company Info ─── */
 export const COMPANY = {

@@ -184,7 +184,7 @@ export function TeamAndCredibilitySection() {
     <section
       id="team-credibility"
       aria-labelledby="team-heading"
-      className="relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-glow-top section-radial-glow py-20 md:py-28 overflow-hidden overflow-x-clip"
+      className="relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-glow-top section-radial-glow pt-12 pb-10 md:pt-16 md:pb-14 overflow-hidden overflow-x-clip"
     >
       {/* Background: faint EclipseRing at 30% opacity */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-30 -z-0">

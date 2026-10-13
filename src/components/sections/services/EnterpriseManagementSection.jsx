@@ -444,7 +444,7 @@ export default function EnterpriseManagementSection() {
       id="enterprise"
       ref={ref}
       aria-labelledby="enterprise-title"
-      className="relative py-20 md:py-28 overflow-hidden transition-colors duration-300"
+      className="relative pt-8 md:pt-12 lg:pt-16 pb-10 md:pb-14 overflow-hidden transition-colors duration-300"
       style={{ backgroundColor: 'var(--base)', color: 'var(--text-primary)' }}
     >
       {/* Circuit-style grid (blue accent) */}

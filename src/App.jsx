@@ -3,6 +3,8 @@ import { Router, useRouter } from "./router/Router";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Products from "./pages/Products";
+import Contact from "./pages/Contact";
 import ComingSoon from "./pages/ComingSoon";
 import CustomCursor from "./components/common/CustomCursor";
 
@@ -17,15 +19,18 @@ function Routes() {
     case '/services':
       return <Services />;
     case '/products':
-      return <ComingSoon title="Products" />;
+      return <Products />;
     case '/contact':
-      return <ComingSoon title="Contact" />;
+      return <Contact />;
+    case '/innovation-lab':
+      return <InnovationLab />
     default:
       return <ComingSoon title="Page Not Found" />;
   }
 }
 
 import useSmoothScroll from "./hooks/useSmoothScroll";
+import InnovationLab from "./pages/InnovationLab.jsx";
 
 function App() {
   useSmoothScroll();

@@ -188,7 +188,7 @@ export default function TechStackSection() {
       id="tech"
       ref={ref}
       aria-labelledby="tech-title"
-      className="relative py-20 md:py-28 overflow-hidden transition-colors duration-300"
+      className="relative pt-8 md:pt-12 lg:pt-16 pb-6 md:pb-8 overflow-hidden transition-colors duration-300"
       style={{ backgroundColor: 'var(--base)', color: 'var(--text-primary)' }}
     >
       {/* Circuit-style grid (blue accent) */}
@@ -222,17 +222,6 @@ export default function TechStackSection() {
           className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
           {...fadeUp(0.85)}
         >
-          <div
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono uppercase tracking-widest mb-4 border"
-            style={{
-              color: 'var(--accent-mint)',
-              backgroundColor: tint('--accent-mint', 8),
-              borderColor: tint('--accent-mint', 40),
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-mint)] animate-pulse" />
-            {TECH_STACK.label}
-          </div>
           <h2
             id="tech-title"
             className="font-display font-bold text-3xl sm:text-4xl md:text-5xl tracking-tight leading-[1.1] mb-4"

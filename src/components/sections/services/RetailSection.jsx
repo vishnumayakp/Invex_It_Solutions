@@ -416,7 +416,7 @@ export default function RetailSection() {
       id="retail"
       ref={ref}
       aria-labelledby="retail-title"
-      className="relative pt-8 pb-20 md:pt-12 md:pb-28 overflow-hidden transition-colors duration-300"
+      className="relative pt-8 pb-10 md:pt-12 md:pb-14 overflow-hidden transition-colors duration-300"
       style={{ backgroundColor: 'var(--base)', color: 'var(--text-primary)' }}
     >
       {/* Blueprint Grid */}
@@ -452,7 +452,7 @@ export default function RetailSection() {
         </motion.div>
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           <motion.div
             className="lg:col-span-5 flex flex-col justify-center"
             initial={reduced ? {} : { opacity: 0, x: -40 }}
@@ -507,15 +507,6 @@ export default function RetailSection() {
             ))}
           </div>
         </div>
-
-        {/* Flow Diagram */}
-        {/* <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : (reduced ? {} : { opacity: 0, y: 30 })}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
-        >
-          <FlowDiagram />
-        </motion.div> */}
       </div>
     </section>
   )

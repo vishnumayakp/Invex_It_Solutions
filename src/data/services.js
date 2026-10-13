@@ -229,7 +229,6 @@ export const ENTERPRISE_MANAGEMENT = {
 }
 
 export const TECH_STACK = {
-  label: "TECHNOLOGY",
   title: "Engineered on Proven, Scalable Technology.",
   description: "Built for zero downtime and hypermarket-grade transaction throughput with modern, enterprise-approved frameworks.",
   categories: [

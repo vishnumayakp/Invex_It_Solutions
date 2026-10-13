@@ -416,7 +416,7 @@ export default function ServiceSaasSection() {
       id="saas"
       ref={ref}
       aria-labelledby="saas-title"
-      className="relative py-20 md:py-28 overflow-hidden transition-colors duration-300"
+      className="relative pt-8 pb-10 md:pt-12 md:pb-14 overflow-hidden transition-colors duration-300"
       style={{ backgroundColor: 'var(--base)', color: 'var(--text-primary)' }}
     >
       <div

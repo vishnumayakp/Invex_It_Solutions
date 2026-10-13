@@ -521,7 +521,7 @@ export default function BusinessSoftwareSection() {
       id="business-software"
       ref={ref}
       aria-labelledby="business-software-title"
-      className="relative pt-8 pb-20 md:pt-12 md:pb-28 overflow-hidden transition-colors duration-300"
+      className="relative pt-8 pb-10 md:pt-12 md:pb-14 overflow-hidden transition-colors duration-300"
       style={{ backgroundColor: 'var(--base)', color: 'var(--text-primary)' }}
     >
       {/* Circuit-style grid (matches hero) */}
@@ -543,7 +543,7 @@ export default function BusinessSoftwareSection() {
       <div className="container-wide relative z-10">
         {/* Header */}
         <motion.div
-          className="max-w-3xl mb-12 sm:mb-16"
+          className="max-w-3xl sm:mb-16"
           initial={reduced ? {} : { opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : (reduced ? {} : { opacity: 0, y: 30 })}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}

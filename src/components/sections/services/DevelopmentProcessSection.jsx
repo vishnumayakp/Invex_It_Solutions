@@ -369,7 +369,7 @@ export default function DevelopmentProcessSection() {
                         {step.description}
                       </p>
                     </div>
-                    <div
+                    {/* <div
                       className="mt-4 pt-3 border-t flex items-center justify-between text-[11px] font-mono"
                       style={{ borderColor: tint('--accent-blue', 20), color: 'var(--text-muted)' }}
                     >
@@ -382,7 +382,7 @@ export default function DevelopmentProcessSection() {
                       <span className="font-bold" style={{ color: 'var(--accent-mint)' }}>
                         0{idx + 1}
                       </span>
-                    </div>
+                    </div> */}
                   </motion.div>
                 </motion.div>
               )

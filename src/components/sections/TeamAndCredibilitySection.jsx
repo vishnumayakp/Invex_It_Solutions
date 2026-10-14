@@ -7,6 +7,7 @@ import Button from '../common/Button'
 import EclipseRing from '../common/EclipseRing'
 import useReducedMotion from '../../hooks/useReducedMotion'
 import logo from '../../assets/images/invex-logo3.png'
+import { Code2, Server, Users, Sparkles } from 'lucide-react'
 
 /**
  * Inline LinkedIn SVG icon (avoids missing brand icons in modern Lucide)
@@ -179,6 +180,30 @@ export function TeamAndCredibilitySection() {
   const reduced = useReducedMotion()
   const leader = teamMembers[0]
   const engineers = teamMembers.slice(1)
+  const mix = (color, pct) => `color-mix(in srgb, ${color} ${pct}%, transparent)`
+
+  const hubStats = [
+    { value: '2', label: 'Core Stacks' },
+    { value: String(engineers.length), label: 'Contributors' },
+    { value: 'E2E', label: 'Full Lifecycle' },
+  ]
+
+  const hubStacks = [
+    {
+      icon: Code2,
+      file: 'FullStack.jsx',
+      stack: 'React / Node.js',
+      accent: 'var(--accent-mint)',
+      techs: ['React 19', 'Node.js', 'REST APIs', 'Cloud Microservices', 'Tailwind'],
+    },
+    {
+      icon: Server,
+      file: 'Core.cs',
+      stack: '.NET / C# MVC',
+      accent: 'var(--accent-blue)',
+      techs: ['C# / .NET Core', 'ASP.NET MVC', 'Enterprise POS Engine', 'SQL Server Architecture'],
+    },
+  ]
 
   return (
     <section
@@ -195,8 +220,7 @@ export function TeamAndCredibilitySection() {
         {/* ══════════════════════════════════════════════════════════
             PART 1: TEAM (THE INNOVATION HUB)
         ══════════════════════════════════════════════════════════ */}
-        <div className="mb-24 sm:mb-32">
-          {/* Section Header */}
+        {/* <div className="mb-24 sm:mb-32">
           <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-14 sm:mb-16">
             <Reveal from="top" delay={0.08}>
               <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[var(--accent-mint)] glass px-3.5 py-1.5 rounded-full border border-[var(--accent-mint)]/30 mb-5">
@@ -214,23 +238,18 @@ export function TeamAndCredibilitySection() {
             </Reveal>
           </div>
 
-          {/* Two-Column Layout: Leader Card (Left) & Innovation Hub (Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            {/* Left Column (5 cols): Leader Card */}
             <Reveal from="left" delay={0.2} rotate className="lg:col-span-5 h-full">
               <SpotlightCard
                 cursorLabel="LEADERSHIP"
                 className="h-full p-7 sm:p-9 flex flex-col justify-between border border-[var(--border-subtle)] hover:border-[var(--accent-mint)]/40 transition-colors"
               >
                 <div>
-                  {/* Portrait Slot (4:5 ratio, rounded-3xl, glass frame, gradient ring, mint glow) */}
                   <div className="relative w-full aspect-[4/5] max-w-[280px] mx-auto mb-6 rounded-3xl overflow-hidden glass border-2 border-[var(--accent-mint)]/40 shadow-[0_0_30px_var(--glow-mint)] flex flex-col items-center justify-center p-6 bg-gradient-to-b from-[var(--surface-raised)] to-[var(--base)]">
-                    {/* Watermark Logo */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
                       <img src={logo} alt="" width={120} height={120} className="w-32 h-32 object-contain" />
                     </div>
 
-                    {/* Gradient Ring Placeholder */}
                     <div className="relative z-10 w-24 h-24 rounded-full p-[2px] bg-gradient-to-tr from-[var(--accent-blue)] via-[var(--accent-mint)] to-[var(--accent-blue)] shadow-lg shadow-[var(--glow-mint)] mb-4 flex items-center justify-center">
                       <div className="w-full h-full rounded-full bg-[var(--surface-raised)] flex items-center justify-center">
                         <span className="font-mono text-xl font-bold text-[var(--accent-mint)]">TD</span>
@@ -242,10 +261,8 @@ export function TeamAndCredibilitySection() {
                     </span>
                   </div>
 
-                  {/* Leader Info */}
                   <div className="flex items-start justify-between gap-4 mb-3">
                     <div>
-                      {/* TODO: replace [Name] with actual name */}
                       <h3 className="font-display font-bold text-2xl text-[var(--text-primary)]">
                         {leader.name}
                       </h3>
@@ -254,7 +271,6 @@ export function TeamAndCredibilitySection() {
                       </p>
                     </div>
 
-                    {/* LinkedIn icon slot (hidden if no href) */}
                     {leader.linkedin && (
                       <a
                         href={leader.linkedin}
@@ -268,7 +284,6 @@ export function TeamAndCredibilitySection() {
                     )}
                   </div>
 
-                  {/* TODO: real name, photo and years */}
                   <p className="text-sm sm:text-base text-[var(--text-secondary)] font-normal leading-relaxed">
                     {leader.bio}
                   </p>
@@ -281,7 +296,6 @@ export function TeamAndCredibilitySection() {
               </SpotlightCard>
             </Reveal>
 
-            {/* Right Column (7 cols): The Innovation Hub Card */}
             <Reveal from="right" delay={0.2} rotate className="lg:col-span-7 h-full">
               <SpotlightCard
                 cursorLabel="INNOVATION"
@@ -305,9 +319,7 @@ export function TeamAndCredibilitySection() {
                     Our core R&amp;D team consisting of Full-Stack Developers (React/Node.js) and .NET (C#/MVC) experts who build our future-ready modules.
                   </p>
 
-                  {/* Two Stacked Glass Skill Clusters */}
                   <div className="space-y-4 mb-8">
-                    {/* Cluster 1: FullStack.jsx */}
                     <div className="rounded-2xl glass border border-[var(--border-subtle)] p-4 bg-[var(--surface-raised)]/60">
                       <div className="flex items-center justify-between mb-3 border-b border-[var(--border-subtle)]/60 pb-2">
                         <div className="flex items-center gap-1.5">
@@ -334,7 +346,6 @@ export function TeamAndCredibilitySection() {
                       </div>
                     </div>
 
-                    {/* Cluster 2: Core.cs */}
                     <div className="rounded-2xl glass border border-[var(--border-subtle)] p-4 bg-[var(--surface-raised)]/60">
                       <div className="flex items-center justify-between mb-3 border-b border-[var(--border-subtle)]/60 pb-2">
                         <div className="flex items-center gap-1.5">
@@ -362,13 +373,11 @@ export function TeamAndCredibilitySection() {
                     </div>
                   </div>
 
-                  {/* Circular Avatar Slots Row */}
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)]">
                         Specialized Engineering Roster
                       </span>
-                      {/* TODO: add team photos and names */}
                       <span className="font-mono text-[10px] text-[var(--accent-mint)]">
                         // R&amp;D Core Contributors
                       </span>
@@ -397,6 +406,155 @@ export function TeamAndCredibilitySection() {
               </SpotlightCard>
             </Reveal>
           </div>
+        </div> */}
+
+        <div className="mb-24 sm:mb-32">
+          {/* Section Header */}
+          <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-14 sm:mb-16">
+            <Reveal from="top" delay={0.08}>
+              <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[var(--accent-mint)] glass px-3.5 py-1.5 rounded-full border border-[var(--accent-mint)]/30 mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-mint)] shadow-[0_0_8px_var(--glow-mint)]" />
+                The People Behind the Code
+              </div>
+            </Reveal>
+
+            <Reveal from="center" delay={0.16} className="w-full">
+              <ScrollRevealText
+                as="h2"
+                text="The Innovation Hub"
+                className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight text-[var(--text-primary)]"
+              />
+            </Reveal>
+          </div>
+
+          {/* Full-width Innovation Hub card */}
+          <Reveal from="bottom" delay={0.2}>
+            <SpotlightCard
+              cursorLabel="INNOVATION"
+              className="relative overflow-hidden p-6 sm:p-10 lg:p-12 border border-[var(--border-subtle)] hover:border-[var(--accent-mint)]/40 transition-colors"
+            >
+              {/* ambient glows */}
+              <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full blur-[110px] pointer-events-none" style={{ backgroundColor: mix('var(--accent-mint)', 14) }} />
+              <div className="absolute -bottom-28 -right-20 w-80 h-80 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: mix('var(--accent-blue)', 14) }} />
+
+              <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                {/* Left: story + stats */}
+                <div className="lg:col-span-5">
+                  <div className="flex items-center gap-3 mb-5">
+                    <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-[var(--accent-mint)]">
+                      <Sparkles size={14} />
+                      Core R&amp;D Engine
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full glass border border-[var(--accent-blue)]/30 text-[10px] font-mono text-[var(--accent-blue)]">
+                      Dual Tech Stack
+                    </span>
+                  </div>
+
+                  <h3 className="font-display font-bold text-3xl sm:text-4xl text-[var(--text-primary)] mb-4 tracking-tight leading-tight">
+                    Where our{' '}
+                    <span
+                      className="bg-clip-text text-transparent"
+                      style={{ backgroundImage: 'linear-gradient(to right, var(--accent-mint), var(--accent-blue))' }}
+                    >
+                      future-ready modules
+                    </span>{' '}
+                    are built
+                  </h3>
+
+                  <p className="text-sm sm:text-base text-[var(--text-secondary)] font-normal leading-relaxed mb-8">
+                    Our core R&amp;D team of Full-Stack Developers (React/Node.js) and .NET (C#/MVC) experts builds the
+                    modules that power our products.
+                  </p>
+
+                  <div className="grid grid-cols-3 gap-3">
+                    {hubStats.map((s) => (
+                      <div
+                        key={s.label}
+                        className="rounded-2xl border px-3 py-4 text-center"
+                        style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'color-mix(in srgb, var(--surface-raised) 60%, transparent)' }}
+                      >
+                        <div className="font-display font-bold text-2xl sm:text-3xl text-[var(--accent-mint)] tabular-nums">{s.value}</div>
+                        <div className="font-mono text-[9.5px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{s.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right: the two stacks */}
+                <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {hubStacks.map(({ icon: Icon, file, stack, accent, techs }) => (
+                    <div
+                      key={file}
+                      className="group/panel relative rounded-2xl border overflow-hidden p-5 transition-all duration-300 hover:-translate-y-1"
+                      style={{ backgroundColor: 'color-mix(in srgb, var(--surface-raised) 70%, transparent)', borderColor: 'var(--border-subtle)' }}
+                    >
+                      <div className="absolute inset-x-0 top-0 h-[2px]" style={{ backgroundImage: `linear-gradient(to right, transparent, ${accent}, transparent)` }} />
+                      <div
+                        className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover/panel:opacity-100 transition-opacity duration-500 pointer-events-none"
+                        style={{ backgroundColor: mix(accent, 22) }}
+                      />
+
+                      <div className="relative flex items-center gap-3 mb-4">
+                        <div
+                          className="w-10 h-10 rounded-xl flex items-center justify-center border shrink-0"
+                          style={{ backgroundColor: mix(accent, 12), borderColor: mix(accent, 35), color: accent }}
+                        >
+                          <Icon size={18} strokeWidth={2.2} />
+                        </div>
+                        <div className="min-w-0">
+                          <div className="font-mono text-sm font-semibold truncate" style={{ color: accent }}>{file}</div>
+                          <div className="font-mono text-[10px] uppercase tracking-wider text-[var(--text-muted)]">{stack}</div>
+                        </div>
+                      </div>
+
+                      <div className="relative flex flex-wrap gap-2">
+                        {techs.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2.5 py-1 rounded-full border font-mono text-[10.5px] text-[var(--text-secondary)] transition-colors duration-300 hover:text-[var(--text-primary)]"
+                            style={{ borderColor: 'var(--border-subtle)', backgroundColor: mix(accent, 6) }}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Roster */}
+              {/* <div className="relative mt-10 pt-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+                <div className="flex items-center gap-3">
+                  <Users size={16} className="text-[var(--accent-mint)]" />
+                  <div>
+                    <div className="font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)]">Specialized Engineering Roster</div>
+                    <div className="font-mono text-[10px] text-[var(--accent-mint)]">// R&amp;D Core Contributors</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center -space-x-3">
+                  {engineers.map((member) => (
+                    <div
+                      key={member.id}
+                      title={`${member.name} — ${member.role}`}
+                      className="relative w-11 h-11 rounded-full p-[2px] ring-2 ring-[var(--base)] hover:z-10 hover:-translate-y-1 hover:scale-110 transition-transform cursor-pointer"
+                      style={{ backgroundImage: 'linear-gradient(to top right, var(--accent-blue), var(--accent-mint))' }}
+                    >
+                      <div className="w-full h-full rounded-full bg-[var(--surface-raised)] flex items-center justify-center font-mono text-xs font-semibold text-[var(--text-primary)]">
+                        {member.initials}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div> */}
+
+              {/* <div className="relative mt-6 flex items-center justify-between text-xs font-mono text-[var(--text-muted)]">
+                <span>Continuous Delivery</span>
+                <span className="text-[var(--accent-blue)]">Full Lifecycle Systems</span>
+              </div> */}
+            </SpotlightCard>
+          </Reveal>
         </div>
 
         {/* ══════════════════════════════════════════════════════════
@@ -404,7 +562,7 @@ export function TeamAndCredibilitySection() {
         ══════════════════════════════════════════════════════════ */}
         <div className="mb-24 sm:mb-32">
           {/* Section Header */}
-          <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-14 sm:mb-16">
+          <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-8 sm:mb-10">
             <Reveal from="top" delay={0.08}>
               <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[var(--accent-mint)] glass px-3.5 py-1.5 rounded-full border border-[var(--accent-mint)]/30 mb-5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-mint)] shadow-[0_0_8px_var(--glow-mint)]" />
@@ -507,10 +665,10 @@ export function TeamAndCredibilitySection() {
             PART 3: CLOSING CTA (Let's build your next vertex)
         ══════════════════════════════════════════════════════════ */}
         <Reveal from="bottom" delay={0.2} className="w-full">
-          <div className="relative rounded-3xl p-8 sm:p-12 lg:p-16 overflow-hidden glass border border-[var(--border-subtle)] shadow-[0_24px_70px_rgba(0,0,0,0.6)] text-center max-w-4xl mx-auto">
-            <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[var(--accent-mint)] glass px-3.5 py-1.5 rounded-full border border-[var(--accent-mint)]/30 mb-6">
+          <div className="relative rounded-3xl p-8 pt-5 sm:p-12 sm:pt-7 lg:p-16 lg:pt-9 overflow-hidden glass border border-[var(--border-subtle)] shadow-[0_24px_70px_rgba(0,0,0,0.6)] text-center max-w-4xl mx-auto">
+            {/* <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[var(--accent-mint)] glass px-3.5 py-1.5 rounded-full border border-[var(--accent-mint)]/30 mb-6">
               Next Steps
-            </span>
+            </span> */}
 
             <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[var(--text-primary)] mb-6 leading-tight tracking-tight">
               Let&apos;s build your next vertex.

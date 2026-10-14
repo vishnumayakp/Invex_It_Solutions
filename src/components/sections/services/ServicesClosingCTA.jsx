@@ -262,7 +262,7 @@ export default function ServicesClosingCTA({ onOpenModal }) {
           </motion.div>
 
           {/* Bottom accents */}
-          <div
+          {/* <div
             className="mt-10 pt-6 border-t flex flex-wrap items-center justify-center gap-6 text-xs font-mono"
             style={{ borderColor: tint('--accent-blue', 25), color: 'var(--text-muted)' }}
           >
@@ -279,7 +279,7 @@ export default function ServicesClosingCTA({ onOpenModal }) {
                 {label}
               </span>
             ))}
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>

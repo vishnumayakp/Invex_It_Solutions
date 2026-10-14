@@ -163,9 +163,8 @@ export default function ContactForm() {
       >
         {/* Top-edge Highlight that brightens on focus */}
         <div
-          className={`absolute top-0 left-0 right-0 h-[1.5px] pointer-events-none transition-opacity duration-500 ${
-            anyFocused ? 'opacity-100' : 'opacity-40'
-          }`}
+          className={`absolute top-0 left-0 right-0 h-[1.5px] pointer-events-none transition-opacity duration-500 ${anyFocused ? 'opacity-100' : 'opacity-40'
+            }`}
           style={{
             background:
               'linear-gradient(90deg, transparent 10%, var(--accent-blue) 40%, var(--accent-mint) 60%, transparent 90%)',
@@ -279,9 +278,9 @@ export default function ContactForm() {
                 >
                   Direct Inquiry
                 </span>
-                <p className="text-xs sm:text-sm font-mono" style={{ color: 'var(--text-muted)' }}>
+                {/* <p className="text-xs sm:text-sm font-mono" style={{ color: 'var(--text-muted)' }}>
                   Submit project scopes, RFP documents, or technical staffing requests.
-                </p>
+                </p> */}
               </div>
 
               {/* Hidden Honeypot Input for basic anti-spam protection */}
@@ -382,9 +381,8 @@ export default function ContactForm() {
                   variant="cta"
                   iconRight={isSubmitting ? null : ArrowRight}
                   disabled={isSubmitting}
-                  className={`w-full py-4 text-sm font-bold tracking-wide uppercase shadow-xl ${
-                    isSubmitting ? 'opacity-80 cursor-wait' : ''
-                  }`}
+                  className={`w-full py-4 text-sm font-bold tracking-wide uppercase shadow-xl ${isSubmitting ? 'opacity-80 cursor-wait' : ''
+                    }`}
                   data-cursor="SUBMIT"
                 >
                   {isSubmitting ? (

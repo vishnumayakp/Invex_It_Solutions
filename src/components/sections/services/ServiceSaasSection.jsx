@@ -394,13 +394,13 @@ function ServiceSaasCard({ card, delay = 0 }) {
         </div>
       </div>
 
-      <div className="mt-8 pt-5 border-t flex items-center justify-between" style={{ borderColor: mint(15) }}>
+      {/* <div className="mt-8 pt-5 border-t flex items-center justify-between" style={{ borderColor: mint(15) }}>
         <span className="font-mono text-xs" style={{ color: 'var(--text-muted)' }}>Instant Turnkey Module</span>
         <a href="/contact" className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold transition-all duration-300" style={{ color: accent }}>
           <span>Launch SaaS</span>
           <ArrowRight size={14} />
         </a>
-      </div>
+      </div> */}
     </motion.div>
   )
 }

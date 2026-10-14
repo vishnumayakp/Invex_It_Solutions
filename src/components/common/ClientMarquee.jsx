@@ -130,19 +130,9 @@ import safariTrading from '../../assets/images/company-logos/logo11.jpg'
 
 const partners = [
     {
-        name: 'Safari Group',
-        subs: ['Hypermarkets', 'Trading', 'Real Estate'],
-        logo: null, // safariGroupLogo
-    },
-    {
         name: 'Simple Logic IT',
         subs: ['Enterprise Solutions'],
         logo: simpleIt, // simpleLogicLogo
-    },
-    {
-        name: 'UAE & Qatar Clients',
-        subs: ['Regional Retail Networks'],
-        logo: null,
     },
     {
         name: 'Safari Hypermarkets',
@@ -176,7 +166,7 @@ export function ClientMarquee({ headingId = 'marquee-heading', spacious = false 
         >
             {/* Hidden semantic heading */}
             <h2 id={headingId} className="sr-only">
-                Our Partners &amp; Clients
+                Our Sister &amp; Companies
             </h2>
 
             {/* Small centered caption (drops from TOP) */}
@@ -184,7 +174,7 @@ export function ClientMarquee({ headingId = 'marquee-heading', spacious = false 
                 <Reveal from="top" delay={0.1}>
                     <p className="font-mono text-xs uppercase tracking-widest text-[var(--accent-mint)] opacity-90 inline-flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-mint)]" aria-hidden="true" />
-                        Our Partners &amp; Clients
+                        Our Sister Companies
                         <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-mint)]" aria-hidden="true" />
                     </p>
                 </Reveal>

@@ -9,6 +9,7 @@ import EclipseRing from '../components/common/EclipseRing'
 import useReducedMotion from '../hooks/useReducedMotion'
 import { TRANSITION_EASE } from '../utils/motionVariants'
 
+
 const FOCUS_CHIPS = [
   { label: 'AI-driven inventory forecasting', icon: Cpu },
   { label: 'Computer vision for automated checkouts', icon: Eye },
@@ -101,7 +102,7 @@ export default function InnovationLab() {
           {/* Main Hero Content */}
           <div className="container-wide relative z-10 flex flex-col items-center justify-center text-center max-w-4xl mx-auto px-4 sm:px-6">
             {/* Eyebrow Pill */}
-            <Reveal from="bottom" delay={0.05}>
+            {/* <Reveal from="bottom" delay={0.05}>
               <div
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-6 text-xs font-semibold uppercase tracking-widest glass"
                 style={{
@@ -112,11 +113,11 @@ export default function InnovationLab() {
                 <Sparkles className="w-3.5 h-3.5 animate-pulse text-[var(--accent-mint)]" aria-hidden="true" />
                 <span>Innovation Lab</span>
               </div>
-            </Reveal>
+            </Reveal> */}
 
             {/* Single H1 Heading */}
             <Reveal from="bottom" delay={0.15}>
-              <h1 className="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.08] mb-6 text-[var(--text-primary)]">
+              <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight leading-[1.08] mb-6 text-[var(--text-primary)]">
                 Invex Innovation <span className="brain-gradient">Lab</span>
               </h1>
             </Reveal>
@@ -129,12 +130,12 @@ export default function InnovationLab() {
             </Reveal>
 
             {/* Supporting Line (Word for Word) */}
-            <Reveal from="bottom" delay={0.32}>
+            {/* <Reveal from="bottom" delay={0.32}>
               <p className="text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto text-[var(--text-muted)] mb-8 font-medium">
                 Our core innovative team develops solutions for any kind of future requirement.
               </p>
             </Reveal>
-
+               */}
             {/* Three Focus Chips */}
             <Reveal from="bottom" delay={0.4} className="w-full mb-10">
               <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-3xl mx-auto" role="list" aria-label="Innovation Lab Focus Areas">

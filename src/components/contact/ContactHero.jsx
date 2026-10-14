@@ -337,7 +337,7 @@ export default function ContactHero() {
           </div>
         </Reveal> */}
 
-        <h1 className="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] mb-6 flex items-center justify-center gap-[0.35em]">
+        <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight leading-[1.05] mb-6 flex items-center justify-center gap-[0.35em]">
           {words.map((word, i) => {
             const isGradientWord = i === 1
             return (

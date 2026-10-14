@@ -18,9 +18,8 @@ export default function DirectChannels() {
     {
       id: 'mumbai-hq',
       label: 'India Headquarters',
-      /* TODO: replace with the real address */
-      value: '[Full Mumbai Address]',
-      isPlaceholder: true,
+      value: 'H.O Building No.429 BC Takur Site, Chirner, Mumbai - 410206',
+      isPlaceholder: false,
       icon: Building2,
       copyable: true,
       cursorLabel: 'COPY',
@@ -28,9 +27,8 @@ export default function DirectChannels() {
     {
       id: 'edappal-kerala',
       label: 'Kerala Development Center',
-      /* TODO: replace with the real address */
-      value: '[Full Edappal Address]',
-      isPlaceholder: true,
+      value: 'Al Madeena Complex, Edappal, Kerala 679576',
+      isPlaceholder: false,
       icon: MapPin,
       copyable: true,
       cursorLabel: 'COPY',
@@ -57,9 +55,12 @@ export default function DirectChannels() {
     {
       id: 'phone-wa',
       label: 'Phone/WhatsApp',
-      /* TODO: replace; when real, render as tel: and a wa.me link */
-      value: '[Your Contact Number]',
-      isPlaceholder: true,
+      value: '+91 80860 99981, +91 74776 11234', // used for the copy button
+      phones: [
+        { display: '+91 80860 99981', digits: '918086099981' },
+        { display: '+91 74776 11234', digits: '917477611234' },
+      ],
+      isPlaceholder: false,
       icon: PhoneCall,
       copyable: true,
       cursorLabel: 'CALL',
@@ -144,9 +145,8 @@ export default function DirectChannels() {
                       </a>
                     ) : (
                       <div
-                        className={`text-sm sm:text-base font-medium tracking-tight break-words ${
-                          ch.isPlaceholder ? 'font-mono' : ''
-                        }`}
+                        className={`text-sm sm:text-base font-medium tracking-tight break-words ${ch.isPlaceholder ? 'font-mono' : ''
+                          }`}
                         style={{
                           color: ch.isPlaceholder ? 'var(--accent-blue-light, var(--accent-blue))' : 'var(--text-primary)',
                         }}

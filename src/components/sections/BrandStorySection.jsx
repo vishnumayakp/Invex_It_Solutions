@@ -390,7 +390,7 @@ export function BrandStorySection() {
       ref={sectionRef}
       id="brand-story"
       aria-labelledby="brand-story-heading"
-      className="relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-radial-glow pt-10 md:pt-14 pb-20 md:pb-28 overflow-hidden overflow-x-clip"
+      className="relative z-10 -mt-10 sm:-mt-14 rounded-t-[28px] bg-[var(--base)] section-radial-glow pt-3 md:pt-5 pb-20 md:pb-28 overflow-hidden overflow-x-clip"
     >
       {/* Decorative ambient background: faint EclipseRing at 30% opacity */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-30 -z-0">

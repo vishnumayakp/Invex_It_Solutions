@@ -1,7 +1,8 @@
-import { NAV_LINKS } from './navLinks'
+import { FOOTER_LINKS, NAV_LINKS } from './navLinks'
 
 /* ─── Navigation Links (re-exported from navLinks.js) ─── */
 export { NAV_LINKS }
+export { FOOTER_LINKS }
 
 
 /* ─── Company Info ─── */

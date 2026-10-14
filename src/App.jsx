@@ -24,6 +24,8 @@ function Routes() {
       return <Contact />;
     case '/innovation-lab':
       return <InnovationLab />
+    case '/careers':
+      return <Careers />
     default:
       return <ComingSoon title="Page Not Found" />;
   }
@@ -31,6 +33,7 @@ function Routes() {
 
 import useSmoothScroll from "./hooks/useSmoothScroll";
 import InnovationLab from "./pages/InnovationLab.jsx";
+import Careers from "./pages/Careers.jsx";
 
 function App() {
   useSmoothScroll();

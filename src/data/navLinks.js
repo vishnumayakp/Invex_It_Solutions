@@ -5,6 +5,10 @@ export const NAV_LINKS = [
   { label: 'Services', href: '/services' },
   { label: 'Products', href: '/products' },
   { label: 'Innovation Lab', href: '/innovation-lab' },
-  // { label: 'Careers', href: '/careers' },
   { label: 'Contact', href: '/contact' },
 ]
+
+export const FOOTER_LINKS = [
+  ...NAV_LINKS,
+  { label: 'Careers', href: '/careers' },
+] 

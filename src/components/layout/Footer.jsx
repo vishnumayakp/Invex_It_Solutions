@@ -120,31 +120,18 @@
 
 import { Link } from '../../router/Router'
 import { Lock, BadgeCheck, CreditCard } from 'lucide-react'
-import { COMPANY, NAV_LINKS, OFFICES } from '../../data/content'
+import { COMPANY, FOOTER_LINKS, NAV_LINKS, OFFICES, } from '@/data/content'
 import BrainMark from '../../lib/BrainMark'
 import CircuitDivider from '../common/CircuitDivider'
 import Reveal from '../common/Reveal'
 import logo from '../../assets/images/invex-logo3.png'
 
-/* ── Legal links ──
- * TODO: build /privacy and /terms pages (unbuilt routes show the existing placeholder).
- * Privacy Policy should cover data collection, GDPR compliance and Middle East
- * data residency norms where applicable. Terms of Service should cover software
- * licensing, AMC terms and usage policies. Final wording needs legal review.
- */
+
 const LEGAL_LINKS = [
   { label: 'Privacy Policy', href: '/privacy' },
   { label: 'Terms of Service', href: '/terms' },
 ]
 
-/* ── Security / trust badges ──
- * IMPORTANT: only a badge with verified: true is displayed. Do not switch on a
- * certification or compliance badge until the company actually holds it.
- * - SSL Secured: true once the live site is served over HTTPS (confirm at launch).
- * - ISO Certifications: TODO set verified: true only if certified, and update the
- *   label with the exact standard (for example the real ISO number) from the certificate.
- * - PCI-DSS: TODO set verified: true only if compliance is confirmed.
- */
 const TRUST_BADGES = [
   { id: 'ssl', label: 'SSL Secured', Icon: Lock, verified: true },
   { id: 'iso', label: 'ISO Certified', Icon: BadgeCheck, verified: true },
@@ -209,7 +196,7 @@ export default function Footer() {
               Main Pages
             </h3>
             <ul className="space-y-3">
-              {NAV_LINKS.map((link) => (
+              {FOOTER_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

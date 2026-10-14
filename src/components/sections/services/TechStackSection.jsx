@@ -338,13 +338,13 @@ export default function TechStackSection() {
                 </div>
 
                 {/* Tier Footer */}
-                <div
+                {/* <div
                   className="mt-6 pt-4 border-t flex items-center justify-between text-xs font-mono"
                   style={{ borderColor: tint('--accent-blue', 20), color: 'var(--text-muted)' }}
                 >
                   <span>Zero Latency Architecture</span>
                   <span style={{ color: `var(${accent})` }}>Verified</span>
-                </div>
+                </div> */}
               </motion.div>
             )
           })}

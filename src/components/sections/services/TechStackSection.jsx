@@ -278,12 +278,6 @@ export default function TechStackSection() {
                       >
                         {category.group}
                       </h3>
-                      <span
-                        className="font-mono text-[10.5px] uppercase tracking-wider"
-                        style={{ color: 'var(--text-muted)' }}
-                      >
-                        Tier 0{catIdx + 1}
-                      </span>
                     </div>
                   </div>
 

@@ -50,7 +50,7 @@ const STEPS = [
   },
   {
     label: 'Result',
-    copy: 'reduced checkout queues by X%, and real-time global inventory tracking.', // prefix rendered separately with Counter
+    copy: 'reduced checkout queues by 99.9%, and real-time global inventory tracking.', // prefix rendered separately with Counter
     highlight: true,
   },
 ]

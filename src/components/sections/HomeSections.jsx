@@ -2688,9 +2688,9 @@ export function TestimonialSection() {
             {/* Attribution Placeholder */}
             {/* TODO: Replace placeholder with real name and title once available */}
             <div className="flex flex-col items-center gap-1.5">
-              <span className="font-display font-semibold text-base sm:text-lg text-[var(--text-primary)] tracking-wide">
+              {/* <span className="font-display font-semibold text-base sm:text-lg text-[var(--text-primary)] tracking-wide">
                 [Name, Title, Safari Group / Simple Logic IT]
-              </span>
+              </span> */}
               <span className="font-mono text-xs text-[color:var(--text-muted)] uppercase tracking-widest">
                 Safari Group &middot; Simple Logic IT
               </span>

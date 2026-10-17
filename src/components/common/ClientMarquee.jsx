@@ -16,6 +16,7 @@ import simpleLogicQatar from '../../assets/images/company-logos/simple-logic-qat
 import retail from '../../assets/images/company-logos/safari.png'
 import car from '../../assets/images/company-logos/car.png'
 import simpleUAE from '../../assets/images/company-logos/simplelogicUAE.png'
+import hilton from '../../assets/images/company-logos/hilton.jpeg'
 
 const ourPartners = [
     { name: 'Simple Logic IT UAE', logo: simpleUAE },
@@ -76,7 +77,7 @@ const partners = [
     {
         name: 'Hilton Impex India Private Limited',
         subs: ['Hilton Impex India Private Limited'],
-        logo: null,
+        logo: hilton,
     },
     {
         name: 'Hi Power Rent A Car',

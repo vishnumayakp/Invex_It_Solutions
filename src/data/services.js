@@ -229,6 +229,7 @@ export const ENTERPRISE_MANAGEMENT = {
 }
 
 export const TECH_STACK = {
+  label: "TECHNOLOGY",
   title: "Engineered on Proven, Scalable Technology.",
   description: "Built for zero downtime and hypermarket-grade transaction throughput with modern, enterprise-approved frameworks.",
   categories: [
@@ -310,8 +311,8 @@ export const CLOSING_CTA = {
   headline: "Have an Operation That Needs Better Software? Let's Map It Out.",
   subline: "Schedule a direct consultation with our solution architects to design an automated ecosystem tailored to your industry.",
   primaryButton: "Request a Free Consultation",
-  callButton: "Call Us: +91 98765 43210",
-  phone: "+91 98765 43210",
+  callButton: "Call Us: +91 80860 99981",
+  phone: "+91 80860 99981",
   serviceOptions: [
     "Retail ERP & Automated POS",
     "Trading Division Management",

@@ -4,8 +4,8 @@ import useReducedMotion from '../../hooks/useReducedMotion'
 import SectionWrapper from '../common/SectionWrapper'
 import SpotlightCard from '../common/SpotlightCard'
 import Reveal from '../common/Reveal'
-import DemoImageSlot from './DemoImageSlot'
 import { TRANSITION_EASE } from '../../utils/motionVariants'
+import hrVisual from '../../assets/images/hrdemo.png'
 
 /* ── Copy (word-for-word from spec) ── */
 const STEPS = [
@@ -101,7 +101,7 @@ function TimelineNode({ step, index, scrollProgress, total, reduced }) {
   )
 }
 
-/* ── Floating 3D Visual Frame (Queue + HR) ── */
+/* ── Floating 3D Visual Frame (HR & Payroll System) ── */
 function VisualFrame({ reduced }) {
   const frameRef = useRef(null)
   const inView = useInView(frameRef, { once: false, amount: 0.1 })
@@ -133,7 +133,7 @@ function VisualFrame({ reduced }) {
   return (
     <motion.div
       ref={frameRef}
-      className="relative"
+      className="relative w-full"
       style={{ perspective: 800 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -154,13 +154,27 @@ function VisualFrame({ reduced }) {
           aria-hidden="true"
         />
 
-        {/* Main Queue Display */}
+        {/* Frame border glow */}
         <div
           className="relative rounded-2xl p-[1px]"
           style={{ background: 'linear-gradient(135deg, var(--accent-mint), var(--accent-blue))' }}
         >
-          <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--surface)' }}>
-            <DemoImageSlot variant="queue" />
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{ background: 'var(--surface)' }}
+          >
+            <img
+              src={hrVisual}
+              alt="Simple Logic IT HR and Payroll System"
+              loading="eager"
+              decoding="async"
+              draggable={false}
+              className={`w-full h-auto object-contain block transition-transform duration-500 ease-out ${!reduced && isHovered ? 'scale-[1.02]' : 'scale-100'
+                }`}
+              style={{
+                imageRendering: '-webkit-optimize-contrast',
+              }}
+            />
           </div>
         </div>
 
@@ -174,61 +188,8 @@ function VisualFrame({ reduced }) {
             backdropFilter: 'blur(12px)',
           }}
         >
-          Queue Management
+          HR &amp; Payroll System
         </div>
-
-        {/* ── Overlapping HR & Payroll floating card ── */}
-        <motion.div
-          className="absolute -bottom-6 -right-4 sm:-right-6 md:-bottom-8 md:-right-8 w-[55%] max-w-[220px] z-20"
-          initial={reduced ? {} : { opacity: 0, y: 20, scale: 0.9 }}
-          animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.4, ease: TRANSITION_EASE }}
-        >
-          <div
-            className="rounded-xl p-[1px]"
-            style={{ background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-mint))' }}
-          >
-            <div
-              className="rounded-xl p-3 sm:p-4"
-              style={{
-                background: 'var(--surface-raised)',
-                backdropFilter: 'blur(12px)',
-              }}
-            >
-              {/* Mini HR mockup */}
-              <div className="flex items-center gap-2 mb-2">
-                <div
-                  className="w-6 h-6 rounded-md flex items-center justify-center"
-                  style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)' }}
-                >
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <circle cx="6" cy="4" r="2.5" stroke="var(--accent-blue)" strokeWidth="1" fill="none" />
-                    <path d="M1.5 11.5C1.5 8.5 3.5 7 6 7s4.5 1.5 4.5 4.5" stroke="var(--accent-blue)" strokeWidth="1" fill="none" strokeLinecap="round" />
-                  </svg>
-                </div>
-                <span
-                  className="text-[10px] font-semibold tracking-wider uppercase"
-                  style={{ color: 'var(--text-muted)' }}
-                >
-                  HR & Payroll
-                </span>
-              </div>
-
-              {/* Skeleton rows */}
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="h-2 rounded-full mb-1.5 last:mb-0"
-                  style={{
-                    width: `${70 + i * 10}%`,
-                    background: 'var(--border-subtle)',
-                    opacity: 0.4 + i * 0.15,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </motion.div>
     </motion.div>
   )

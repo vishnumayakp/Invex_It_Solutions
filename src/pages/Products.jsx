@@ -7,13 +7,12 @@ import ProductsHero from '../components/products/ProductsHero'
 import CaseStudySafari from '../components/products/CaseStudySafari'
 import CaseStudySimpleLogic from '../components/products/CaseStudySimpleLogic'
 
-/* Lazy-load sections for code-splitting and rapid initial rendering */
+
 const DemoGallery = lazy(() => import('../components/products/DemoGallery'))
 const EngagementModels = lazy(() => import('../components/products/EngagementModels'))
 const FAQSection = lazy(() => import('../components/products/FAQSection'))
 const DemoCTA = lazy(() => import('../components/products/DemoCTA'))
 
-/* Stable skeleton placeholder to prevent layout shifts during lazy load */
 function SectionSkeleton({ height = 'min-h-[600px]' }) {
   return (
     <div
@@ -31,20 +30,11 @@ function SectionSkeleton({ height = 'min-h-[600px]' }) {
   )
 }
 
-/**
- * Products Page — Portfolio, Enterprise Case Studies & Delivery Frameworks.
- * Composition order:
- * ProductsHero → CircuitDivider → CaseStudySafari → CircuitDivider →
- * CaseStudySimpleLogic → CircuitDivider → DemoGallery → CircuitDivider →
- * EngagementModels → CircuitDivider → FAQSection → CircuitDivider →
- * DemoCTA → Footer
- */
+
 export default function Products() {
   const { scrollYProgress } = useScroll()
 
-  /* TODO: Replace page title and meta description placeholders with final approved SEO metadata */
   useEffect(() => {
-    // TODO: Update page title with final marketing title
     document.title = 'Products & Case Studies | Invex IT Solutions'
 
     let metaDesc = document.querySelector('meta[name="description"]')

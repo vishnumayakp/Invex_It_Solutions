@@ -4,8 +4,8 @@ import useReducedMotion from '../../hooks/useReducedMotion'
 import SectionWrapper from '../common/SectionWrapper'
 import SpotlightCard from '../common/SpotlightCard'
 import Reveal from '../common/Reveal'
-import DemoImageSlot from './DemoImageSlot'
 import { TRANSITION_EASE } from '../../utils/motionVariants'
+import safariVisual from '../../assets/images/erp.png'
 
 /* ── UptimeCounter: Animated count-up for decimal value (e.g. 99.9%) ── */
 function UptimeCounter({ value = 99.9, suffix = '%', duration = 2, className = '' }) {
@@ -200,7 +200,7 @@ function VisualFrame({ reduced }) {
   return (
     <motion.div
       ref={frameRef}
-      className="relative"
+      className="relative w-full"
       style={{ perspective: 800 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -234,7 +234,18 @@ function VisualFrame({ reduced }) {
             className="rounded-2xl overflow-hidden"
             style={{ background: 'var(--surface)' }}
           >
-            <DemoImageSlot variant="erp" />
+            <img
+              src={safariVisual}
+              alt="Safari Group Retail ERP and POS system"
+              loading="eager"
+              decoding="async"
+              draggable={false}
+              className={`w-full h-[380px] sm:h-[460px] lg:h-[520px] object-cover object-[left_top] block transition-transform duration-500 ease-out ${!reduced && isHovered ? 'scale-[1.03]' : 'scale-100'
+                }`}
+              style={{
+                imageRendering: '-webkit-optimize-contrast',
+              }}
+            />
           </div>
         </div>
 
